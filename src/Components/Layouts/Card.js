@@ -36,7 +36,7 @@ function MediaCard(props) {
               {props.player.Name}
             </Typography>
             <Typography gutterBottom variant="subheading" component="h2">
-              {props.player.Role}
+              {props.player.Role.charAt(0).toUpperCase() + props.player.Role.substr(1)}
             </Typography>
           </Grid>
 
@@ -52,7 +52,7 @@ function MediaCard(props) {
         <Button size="small" color="primary">
           Learn More
         </Button>
-      </CardActions>*/} 
+      </CardActions>*/}
     </Card>
   );
 }

@@ -73,20 +73,26 @@ class HeroTable extends React.Component {
               <TableCell numeric>Deaths</TableCell>
               <TableCell numeric>Damage</TableCell>
               <TableCell numeric>Healing</TableCell>
+              <TableCell numeric>Ultimates</TableCell>
+              <TableCell numeric>Final Blows</TableCell>
+              <TableCell numeric>Total Time (Minutes)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {this.props.hs.map(row => {
-              console.log(row);
+              if ( !(row.Eliminations === 0 & row.Deaths === 0 & row.Damage === 0 & row.Healing === 0))
               return (
                 <TableRow key={row.id}>
                   <TableCell component="th" scope="row">
-                    {row.Hero}
+                    {row.Hero.charAt(0).toUpperCase() + row.Hero.substr(1)}
                   </TableCell>
-                  <TableCell numeric>{row.elims}</TableCell>
-                  <TableCell numeric>{row.deaths}</TableCell>
-                  <TableCell numeric>{row.damage}</TableCell>
-                  <TableCell numeric>{row.healing}</TableCell>
+                  <TableCell numeric>{row.Eliminations.toFixed(2)}</TableCell>
+                  <TableCell numeric>{row.Deaths.toFixed(2)}</TableCell>
+                  <TableCell numeric>{row.Damage.toFixed(2)}</TableCell>
+                  <TableCell numeric>{row.Healing.toFixed(2)}</TableCell>
+                  <TableCell numeric>{row.Ultimates.toFixed(2)}</TableCell>
+                  <TableCell numeric>{row.FinalBlows.toFixed(2)}</TableCell>
+                  <TableCell numeric>{(row.Time/60).toFixed(2)}</TableCell>
                 </TableRow>
               );
             })}

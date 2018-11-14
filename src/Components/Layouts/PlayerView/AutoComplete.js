@@ -212,8 +212,10 @@ const components = {
 class IntegrationReactSelect extends React.Component {
   state = {
     players: [],
-    single: null,
-    multi: null,
+    single: "Muma",
+    multi: "Muma",
+    playerss:"Muma",
+
   };
 
   componentDidMount() {

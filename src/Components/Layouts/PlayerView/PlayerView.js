@@ -31,7 +31,7 @@ class PlayerView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: '{label:Muma, value:Muma}',
             players: [],
             player: "Muma",
             hero: "Tracer",
@@ -45,6 +45,7 @@ class PlayerView extends React.Component {
 
 
     componentDidMount() {
+        this.setState({value: {value:"Muma", label:"Muma"}}, this.getHeroStats("Muma"))
         this.getPlayers()
         this.state.playerss = this.state.players.map(player => ({
             label: player,
@@ -60,15 +61,17 @@ class PlayerView extends React.Component {
         .then(this.getHeroStats())
         .catch(err => console.error(err))
       }
-      getHeroStats = _ => {
-        fetch(`http://localhost:4000/herostats/player?player=${this.state.value.label}`)
+      getHeroStats = (val) => {
+        console.log(val)
+        fetch(`http://localhost:4000/herostats/player?player=${val}`)
         .then(response => response.json())
         .then(response => this.setState({hs: response.data}))
         .catch(err => console.error(err))
       }
       handleChange(val) {
-        this.setState({value: val})
-        this.getHeroStats();
+        console.log(val);
+        this.setState({value: val}, this.getHeroStats(val.value))
+
       }
 
 
@@ -76,7 +79,7 @@ class PlayerView extends React.Component {
 
       return (
         <Fragment>
-            <Grid container justify="center" alignItems="center" spacing={16}>
+            <Grid container justify="" alignItems="top" spacing={16}>
                 <Grid item>
                     <AutoComplete
                         id="Player"
